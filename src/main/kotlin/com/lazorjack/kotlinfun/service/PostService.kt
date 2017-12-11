@@ -1,18 +1,13 @@
 package com.lazorjack.kotlinfun.service
 
 import com.lazorjack.kotlinfun.domain.Post
-import com.lazorjack.kotlinfun.repository.PostRepository
-import org.springframework.stereotype.Service
+import reactor.core.publisher.Mono
+import java.util.*
 
-@Service
-class PostService(val postRepository: PostRepository) {
+interface PostService {
 
-    fun getById(id: Long): Post {
-        return postRepository.findOne(id)
-    }
+    fun getById(id: Long): Optional<Post>
 
-    fun create(post: Post): Post {
-        return postRepository.save(post)
-    }
+    fun create(post: Post): Post
 
 }
